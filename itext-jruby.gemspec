@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "itext-jruby.gemspec",
     "lib/itext-jruby.rb",
     "lib/itext.rb",
     "lib/itext/attachments.rb",
