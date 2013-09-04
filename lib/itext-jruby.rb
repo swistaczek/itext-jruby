@@ -2,23 +2,23 @@
 require 'java'
 Dir[File.expand_path(File.join(File.dirname(__FILE__), "../libexec/jar/*.jar"))].each { |jar| require jar }
 
-import java.io.ByteArrayOutputStream
-import com.lowagie.text.html.WebColors
-import com.lowagie.text.Document
-import com.lowagie.text.Paragraph
-import com.lowagie.text.Phrase
-import com.lowagie.text.PageSize
-import com.lowagie.text.Chunk
-import com.lowagie.text.pdf.PdfPCell
-import com.lowagie.text.pdf.PdfPTable
-import com.lowagie.text.BadElementException
-import com.lowagie.text.DocumentException
-import com.lowagie.text.Image
-import com.lowagie.text.pdf.PdfFileSpecification
-import com.lowagie.text.pdf.PdfReader
-import com.lowagie.text.pdf.PdfSignatureAppearance
-import com.lowagie.text.pdf.PdfStamper
-import com.lowagie.text.pdf.PdfWriter
-import java.io.FileOutputStream
+java_import java.io.ByteArrayOutputStream
+java_import com.lowagie.text.html.WebColors
+java_import com.lowagie.text.Document
+java_import com.lowagie.text.Paragraph
+java_import com.lowagie.text.Phrase
+java_import com.lowagie.text.PageSize
+java_import com.lowagie.text.Chunk
+java_import com.lowagie.text.pdf.PdfPCell
+java_import com.lowagie.text.pdf.PdfPTable
+java_import com.lowagie.text.BadElementException
+java_import com.lowagie.text.DocumentException
+java_import com.lowagie.text.Image
+java_import com.lowagie.text.pdf.PdfFileSpecification
+java_import com.lowagie.text.pdf.PdfReader
+java_import com.lowagie.text.pdf.PdfSignatureAppearance
+java_import com.lowagie.text.pdf.PdfStamper
+java_import com.lowagie.text.pdf.PdfWriter
+java_import java.io.FileOutputStream
 
 require 'itext'
