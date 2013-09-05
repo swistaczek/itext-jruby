@@ -55,6 +55,8 @@ module Itext::Attachments
       elsif attachment.is_a?(String)
         attachment_path = attachment
         attachment_name = Pathname.new(attachment_path).basename
+      else
+        raise ArgumentError.new("Specify hash with :path and :file_name or string with path")
       end
 
       attachment_spec = Java::ComLowagieTextPdf::PdfFileSpecification.fileEmbedded @writer, 
