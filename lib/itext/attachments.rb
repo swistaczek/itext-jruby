@@ -23,9 +23,7 @@ module Itext::Attachments
     @attachments ||= []
     attachments = [attachments] unless attachments.is_a?(Array)
     attachments.each do |attachment|
-      if File.exists?(attachment)
-        @attachments << attachment
-      end
+      @attachments << attachment
     end
     @attachments
   end
@@ -36,9 +34,7 @@ module Itext::Attachments
     @attachments ||= []
     attachments = [attachments] unless attachments.is_a?(Array)
     attachments.each do |attachment|
-      if File.exists?(attachment)
-        @attachments.delete(attachment)
-      end
+      @attachments.delete(attachment)
     end
     @attachments
   end
