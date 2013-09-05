@@ -5,16 +5,17 @@ IText Pdf generation static java build packed to gem with some additional Ruby m
 == Usage
 
 === Instalation
-require 'itext-jruby'
+    require 'itext-jruby'
 
 == Example
-@source_pdf   = File.expand_path('pdf_demo.pdf')
-@sample_image = File.expand_path('ja.jpg')
-@output_pdf   = File.expand_path('out.pdf')
 
-@pdf_document = Itext.new(path: @path)
-@pdf_document.add_attachment @pathb
-@pdf_document.save(@out)
+    @source_pdf   = File.expand_path('pdf_demo.pdf')
+    @sample_image = File.expand_path('ja.jpg')
+    @output_pdf   = File.expand_path('out.pdf')
+
+    @pdf_document = Itext.new(path: @path)
+    @pdf_document.add_attachment @pathb
+    @pdf_document.save(@out)
 
 Find more examples in test directory.
 
