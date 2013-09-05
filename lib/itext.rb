@@ -21,10 +21,15 @@ class Itext
 
   def save(save_to = nil)
     save_to ||= @path
-    raise ArgumentError.new('Specified file does not exists') unless  File.exists?(@path)
+
+    output_file = if File.exists?(@path)
+      Tempfile.new(['temp_pdf', '.pdf'])
+    else
+      File.open(save_to, "r+") 
+    end
 
     @reader   = Java::ComLowagieTextPdf::PdfReader.new(@path.to_java(:string))
-    @buffer   = Java::JavaIo::FileOutputStream.new save_to
+    @buffer   = Java::JavaIo::FileOutputStream.new output_file.path
     @stamper  = Java::ComLowagieTextPdf::PdfStamper.new @reader, @buffer
 
     # Run all attached hooks
@@ -32,6 +37,11 @@ class Itext
 
     @stamper.close
 
+    if output_file.is_a?(Tempfile)
+      FileUtils.rm(save_to) if File.exists?(save_to)
+      FileUtils.cp(output_file.path, save_to) 
+    end
+    
     # Return output path
     save_to
   end
