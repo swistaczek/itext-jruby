@@ -48,11 +48,18 @@ module Itext::Attachments
   def process_attachments
     @writer   = @stamper.getWriter.to_java(Java::ComLowagieTextPdf::PdfWriter)
 
-    @attachments.each do |attachment_path|
-      attachment_name = Pathname.new(attachment_path).basename.to_s.to_java_string
+    @attachments.each do |attachment|
+      if attachment.is_a?(Hash)
+        attachment_path = attachment[:path]
+        attachment_name = attachment[:file_name]
+      elsif attachment.is_a?(String)
+        attachment_path = attachment
+        attachment_name = Pathname.new(attachment_path).basename
+      end
+
       attachment_spec = Java::ComLowagieTextPdf::PdfFileSpecification.fileEmbedded @writer, 
-                                                                                   attachment_path.to_java_string,
-                                                                                   attachment_name,
+                                                                                   attachment_path.to_s.to_java_string,
+                                                                                   attachment_name.to_s.to_java_string,
                                                                                    nil
       attachment_spec.addDescription attachment_name, false.to_java(:boolean)
       @stamper.addFileAttachment attachment_name, attachment_spec
