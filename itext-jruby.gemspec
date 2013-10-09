@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "itext-jruby"
-  s.version = "0.0.6"
+  s.version = "0.0.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ernest Bursa"]
-  s.date = "2013-09-05"
+  s.date = "2013-10-09"
   s.description = "IText"
   s.email = "ernest@bzdury.pl"
   s.extra_rdoc_files = [
@@ -18,6 +18,8 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".ruby-gemset",
+    ".ruby-version",
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
@@ -28,6 +30,7 @@ Gem::Specification.new do |s|
     "lib/itext-jruby.rb",
     "lib/itext.rb",
     "lib/itext/attachments.rb",
+    "lib/itext/signing.rb",
     "libexec/jar/bcmail-jdk14-138.jar",
     "libexec/jar/bcprov-jdk14-138.jar",
     "libexec/jar/bctsp-jdk14-138.jar",
@@ -44,6 +47,15 @@ Gem::Specification.new do |s|
     "libexec/jar/junit-4.4.jar",
     "libexec/jar/pdf-renderer.jar",
     "libexec/jar/servlet.jar",
+    "output.pdf",
+    "test/assets/cert/ca.crt",
+    "test/assets/cert/ca.key",
+    "test/assets/cert/ia.crt",
+    "test/assets/cert/ia.csr",
+    "test/assets/cert/ia.key",
+    "test/assets/cert/ia.p12",
+    "test/assets/pug.jpg",
+    "test/assets/sample.pdf",
     "test/helper.rb",
     "test/test_itext-jruby.rb"
   ]
@@ -61,17 +73,20 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rdoc>, [">= 0"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
+      s.add_development_dependency(%q<pry>, [">= 0"])
     else
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
+      s.add_dependency(%q<pry>, [">= 0"])
     end
   else
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<rdoc>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
+    s.add_dependency(%q<pry>, [">= 0"])
   end
 end
 
