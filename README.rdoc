@@ -10,7 +10,6 @@ IText Pdf generation static java build packed to gem with some additional Ruby m
 
 == Example
   
-    require 'pry'
     require 'itext-jruby'
 
     @source_pdf   = File.expand_path('test/assets/sample.pdf')

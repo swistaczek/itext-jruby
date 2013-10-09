@@ -35,7 +35,7 @@ module Itext::Signing
     raise ArgumentError, "Please provide :private_key_path" unless opts[:private_key_path]
 
     @private_key_path = opts[:private_key_path]
-    @password         = opts[:password].to_s.to_java.toCharArray if opts[:password]
+    @password         = opts[:password].to_s.to_java.toCharArray
 
     @keystore = Java::JavaSecurity::KeyStore.getInstance('pkcs12')
     @keystore.load(Java::JavaIo::FileInputStream.new(@private_key_path), @password)
@@ -52,7 +52,7 @@ module Itext::Signing
 
   # Change default behavior of stamper if using signing
   def initialize_stamper
-    Java::ComLowagieTextPdf::PdfStamper.createSignature(@reader, @buffer, 0.to_java(Java::JavaLang::Character)) if sign_file?
+    Java::ComLowagieTextPdf::PdfStamper.createSignature(@reader, @buffer, 0x00.to_java(Java::JavaLang::Character)) if sign_file?
   end
 
   # Process signing using IText
