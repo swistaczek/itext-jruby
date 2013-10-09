@@ -4,6 +4,8 @@ module Itext::Attachments
   def initialize(*args, &block)
     @hooks     ||= []
     @hooks.push ->{ process_attachments }
+
+    super rescue nil
   end
 
   def self.included(base)
@@ -44,23 +46,25 @@ module Itext::Attachments
   def process_attachments
     @writer   = @stamper.getWriter.to_java(Java::ComLowagieTextPdf::PdfWriter)
 
-    @attachments.each do |attachment|
-      if attachment.is_a?(Hash)
-        attachment_path = attachment[:path]
-        attachment_name = attachment[:file_name]
-      elsif attachment.is_a?(String)
-        attachment_path = attachment
-        attachment_name = Pathname.new(attachment_path).basename
-      else
-        raise ArgumentError.new("Specify hash with :path and :file_name or string with path")
-      end
+    if @attachments && @attachments.size > 0
+      @attachments.each do |attachment|
+        if attachment.is_a?(Hash)
+          attachment_path = attachment[:path]
+          attachment_name = attachment[:file_name]
+        elsif attachment.is_a?(String)
+          attachment_path = attachment.to_s
+          attachment_name = Pathname.new(attachment_path).basename.to_s
+        else
+          raise ArgumentError.new("Specify hash with :path and :file_name or string with path")
+        end
 
-      attachment_spec = Java::ComLowagieTextPdf::PdfFileSpecification.fileEmbedded @writer, 
-                                                                                   attachment_path.to_s.to_java_string,
-                                                                                   attachment_name.to_s.to_java_string,
-                                                                                   nil
-      attachment_spec.addDescription attachment_name, false.to_java(:boolean)
-      @stamper.addFileAttachment attachment_name, attachment_spec
+        attachment_spec = Java::ComLowagieTextPdf::PdfFileSpecification.fileEmbedded @writer, 
+                                                                                     attachment_path.to_java_string,
+                                                                                     attachment_name.to_java_string,
+                                                                                     nil
+        attachment_spec.addDescription attachment_name, false.to_java(:boolean)
+        @stamper.addFileAttachment attachment_name, attachment_spec
+      end
     end
 
     # @writer.close
