@@ -47,7 +47,6 @@ Gem::Specification.new do |s|
     "libexec/jar/junit-4.4.jar",
     "libexec/jar/pdf-renderer.jar",
     "libexec/jar/servlet.jar",
-    "output.pdf",
     "test/assets/cert/ca.crt",
     "test/assets/cert/ca.key",
     "test/assets/cert/ia.crt",
