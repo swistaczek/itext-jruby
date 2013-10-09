@@ -5,20 +5,34 @@ IText Pdf generation static java build packed to gem with some additional Ruby m
 == Usage
 
 === Instalation
-    require 'itext-jruby'
+  
+  gem install itext-jruby
 
 == Example
+  
+    require 'pry'
+    require 'itext-jruby'
 
-    @source_pdf   = File.expand_path('pdf_demo.pdf')
-    @sample_image = File.expand_path('ja.jpg')
-    @output_pdf   = File.expand_path('out.pdf')
+    @source_pdf   = File.expand_path('test/assets/sample.pdf')
+    @sample_image = File.expand_path('test/assets/pug.jpg')
+    @output_pdf   = File.expand_path('output.pdf')
+    @cert_file    = File.expand_path('test/assets/cert/ia.p12')
 
-    @pdf_document = Itext.new(path: @path)
-    @pdf_document.add_attachment @pathb
-    @pdf_document.save(@out)
+    @pdf_document = Itext.new(path: @source_pdf)
+    @pdf_document.add_attachment @sample_image
+    @pdf_document.enable_signing!(private_key_path: @cert_file)
+    @pdf_document.save(@output_pdf)
 
 Find more examples in test directory.
 
+
+== Changelog
+* 0.0.6 - First stable version allowing adding attachments to PdfFile
+* 0.0.7 - Add option to sign documents usign pkcs12 certificates
+
+== Read more
+* Creating pkcs12 certs: http://www.flatmtn.com/article/creating-pkcs12-certificates
+* Converting .pem to .pcks: http://www.advogato.org/person/johnnyb/diary.html?start=143
 
 == Contributing to itext-jruby
  

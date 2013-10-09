@@ -1,10 +1,13 @@
 # encoding: utf-8
 require 'pathname'
+require 'tempfile'
 
 class Itext
   require 'itext/attachments'
+  require 'itext/signing'
 
   include Attachments
+  include Signing
 
   # Create new Itext document instance
   # Required params:
@@ -19,7 +22,10 @@ class Itext
     raise ArgumentError.new('Please provide absolute path') unless Pathname.new(@path).absolute?
   end
 
-  def save(save_to = nil)
+  # Saves file to given destination
+  # Usage: save(path, options = {})
+  # Allowed options: { sign_document: true }
+  def save(save_to = nil, opts = {})
     save_to ||= @path
 
     output_file = if File.exists?(@path)
@@ -30,7 +36,7 @@ class Itext
 
     @reader   = Java::ComLowagieTextPdf::PdfReader.new(@path.to_java(:string))
     @buffer   = Java::JavaIo::FileOutputStream.new output_file.path
-    @stamper  = Java::ComLowagieTextPdf::PdfStamper.new @reader, @buffer
+    @stamper  = initialize_stamper
 
     # Run all attached hooks
     @hooks.each { |hook| hook.call }
@@ -47,6 +53,17 @@ class Itext
   end
 
   protected
+
+  # Creates default stamper
+  def initialize_stamper
+    stamper = super rescue nil
+    if stamper
+      stamper
+    else
+      # Initialize default stamper
+      Java::ComLowagieTextPdf::PdfStamper.new @reader, @buffer
+    end
+  end
 
   def hooks
     @hooks || []
