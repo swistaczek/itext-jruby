@@ -32,7 +32,8 @@ module Itext::Signing
   # Required options: { private_key_path: '/path/key' }
   # Optional options: { password: '' }
   def enable_signing!(opts = {})
-    raise ArgumentError, "Please provide :private_key_path" unless opts[:private_key_path]
+    raise ArgumentError, "Please provide :private_key_path"            unless opts[:private_key_path]
+    raise ArgumentError, "Specified :private_key_path does not exists" unless File.exists?(opts[:private_key_path])
 
     @private_key_path = opts[:private_key_path]
     @password         = opts[:password].to_s.to_java.toCharArray
