@@ -28,6 +28,7 @@ Find more examples in test directory.
 == Changelog
 * 0.0.6 - First stable version allowing adding attachments to PdfFile
 * 0.0.7 - Add option to sign documents usign pkcs12 certificates
+* 0.0.8 - Minor fixes
 
 == Read more
 * Creating pkcs12 certs: http://www.flatmtn.com/article/creating-pkcs12-certificates

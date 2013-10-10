@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "itext-jruby"
-  s.version = "0.0.7"
+  s.version = "0.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ernest Bursa"]
-  s.date = "2013-10-09"
+  s.date = "2013-10-10"
   s.description = "IText"
   s.email = "ernest@bzdury.pl"
   s.extra_rdoc_files = [
@@ -54,6 +54,7 @@ Gem::Specification.new do |s|
     "test/assets/cert/ia.key",
     "test/assets/cert/ia.p12",
     "test/assets/pug.jpg",
+    "test/assets/sample.html",
     "test/assets/sample.pdf",
     "test/helper.rb",
     "test/test_itext-jruby.rb"
