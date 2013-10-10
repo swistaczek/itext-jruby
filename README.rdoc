@@ -30,6 +30,9 @@ Find more examples in test directory.
 * 0.0.7 - Add option to sign documents usign pkcs12 certificates
 * 0.0.8 - Minor fixes
 
+== Known issues
+* Problem with TorqueBox - https://issues.jboss.org/browse/TORQUE-1164
+
 == Read more
 * Creating pkcs12 certs: http://www.flatmtn.com/article/creating-pkcs12-certificates
 * Converting .pem to .pcks: http://www.advogato.org/person/johnnyb/diary.html?start=143
