@@ -11,14 +11,6 @@ module Itext::Attachments
   def self.included(base)
     base.extend(ClassMethods)
     attr_reader :attachments
-
-    # base.class_eval do    
-    #   original_method = instance_method(:initialize)
-    #   define_method(:initialize) do |*args, &block|
-    #     original_method.bind(self).call(*args, &block)
-    #     @hooks.push ->{ process_attachments }
-    #   end
-    # end
   end
 
   def add_attachments(attachments)
