@@ -13,6 +13,7 @@ class Itext
   # Required params:
   # path: Pass absolute path to pdf file
   def initialize(*args, &block)
+    self.class.import_java     # Import required deps
     super
 
     opts   = args[0] if args.is_a?(Array)
