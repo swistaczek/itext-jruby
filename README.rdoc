@@ -1,6 +1,6 @@
 = itext-jruby
 
-IText Pdf generation static java build packed to gem with some additional Ruby methods.
+IText (4.2.0) Pdf generation static java build packed to gem with some additional Ruby methods allowing adding attachments and encrypting document.
 
 == Usage
 
@@ -31,16 +31,18 @@ Find more examples in test directory.
 * 0.0.8 - Minor fixes
 * 0.0.9 - Load jars only if required
 * 0.1.1 - Minor fixes
+* 0.1.2 - Minor fixes
 
 == Known issues
-* Problem with TorqueBox stack - https://issues.jboss.org/browse/TORQUE-1164
+If you have time and knowledge how to solve following issues please submit a pull request.
+
+* Problem with TorqueBox/Rails stack - https://issues.jboss.org/browse/TORQUE-1164 - BouncyCastle is allready in $CLASSPATH (in newest version than this required by iText)
 
 == Read more
 * Creating pkcs12 certs: http://www.flatmtn.com/article/creating-pkcs12-certificates
 * Converting .pem to .pcks: http://www.advogato.org/person/johnnyb/diary.html?start=143
 
 == Contributing to itext-jruby
- 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
