@@ -30,6 +30,7 @@ Find more examples in test directory.
 * 0.0.7 - Add option to sign documents usign pkcs12 certificates
 * 0.0.8 - Minor fixes
 * 0.0.9 - Load jars only if required
+* 0.1.1 - Minor fixes
 
 == Known issues
 * Problem with TorqueBox stack - https://issues.jboss.org/browse/TORQUE-1164
