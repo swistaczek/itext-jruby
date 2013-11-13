@@ -1,6 +1,6 @@
 = itext-jruby
 
-IText (4.2.0) Pdf generation static java build packed to gem with some additional Ruby methods allowing adding attachments and encrypting document.
+IText (5.4.4) Pdf generation static java build packed to gem with some additional Ruby methods allowing adding attachments and encrypting document.
 
 == Usage
 

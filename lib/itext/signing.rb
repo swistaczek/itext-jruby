@@ -34,13 +34,10 @@ module Itext::Signing
   def enable_signing!(opts = {})
     raise ArgumentError, "Please provide :private_key_path"            unless opts[:private_key_path]
     raise ArgumentError, "Specified :private_key_path does not exists" unless File.exists?(opts[:private_key_path])
-
     @private_key_path = opts[:private_key_path]
     @password         = opts[:password].to_s.to_java.toCharArray
-
-    @keystore = Java::JavaSecurity::KeyStore.getInstance('pkcs12')
+    @keystore = Java::JavaSecurity::KeyStore.getInstance('pkcs12','BC')
     @keystore.load(Java::JavaIo::FileInputStream.new(@private_key_path), @password)
-
     keystore_alias = @keystore.aliases().nextElement()
     @private_key   = @keystore.getKey(keystore_alias, @password).to_java(Java::JavaSecurity::PrivateKey)
     @cert_chain    = @keystore.getCertificateChain(keystore_alias)
@@ -53,14 +50,17 @@ module Itext::Signing
 
   # Change default behavior of stamper if using signing
   def initialize_stamper
-    Java::ComLowagieTextPdf::PdfStamper.createSignature(@reader, @buffer, 0x00.to_java(Java::JavaLang::Character)) if sign_file?
+    Java::ComItextpdfTextPdf::PdfStamper.createSignature(@reader, @buffer, 0x00.to_java(Java::JavaLang::Character)) if sign_file?
   end
 
   # Process signing using IText
   def process_signing
     if sign_file?
-      @appearance    = @stamper.getSignatureAppearance().to_java(Java::ComLowagieTextPdf::PdfSignatureAppearance)
-      @appearance.setCrypto(@private_key, @cert_chain, nil, Java::ComLowagieTextPdf::PdfSignatureAppearance::WINCER_SIGNED)
+      @appearance = @stamper.getSignatureAppearance()
+      @appearance.setCertificationLevel(4)
+      pks = Java::ComItextpdfTextPdfSecurity::PrivateKeySignature.new(@private_key, "SHA-256", "BC")
+      digest = Java::ComItextpdfTextPdfSecurity::BouncyCastleDigest.new()
+      Java::ComItextpdfTextPdfSecurity::MakeSignature.signDetached(@appearance, digest, pks, @cert_chain, nil, nil, nil, 0, Java::ComItextpdfTextPdfSecurity::MakeSignature::CryptoStandard::CMS)
     end
   end
 
